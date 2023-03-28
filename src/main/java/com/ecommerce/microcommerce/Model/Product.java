@@ -1,21 +1,36 @@
 package com.ecommerce.microcommerce.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+//@JsonFilter("myDynamicFilter")
+@Entity
 public class Product {
+    @Id
     private int id;
-    private String nom;
-    private int prix;
+    private String label;
+    private int price;
+    //@JsonIgnoreProperties(value = {"originalPrice", "id"})
+    //@JsonIgnore
+
+    private int originalPrice;
 
     public Product() {
     }
 
-    public Product(int id, String nom, int prix) {
+    public Product(int id, String label, int price,int originalPrice) {
 
         this.id = id;
 
-        this.nom = nom;
+        this.label = label;
 
-        this.prix = prix;
+        this.price = price;
+        this.originalPrice=originalPrice;
 
     }
 
@@ -27,28 +42,36 @@ public class Product {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getlabel() {
+        return label;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setlabel(String label) {
+        this.label = label;
     }
 
-    public int getPrix() {
-        return prix;
+    public int getprice() {
+        return price;
     }
 
-    public void setPrix(int prix) {
-        this.prix = prix;
+    public void setprice(int price) {
+        this.price = price;
+    }
+
+    public int getoriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setoriginalPrice(int originalPrice) {
+        this.originalPrice = originalPrice;
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prix=" + prix +
+                ", label='" + label + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
